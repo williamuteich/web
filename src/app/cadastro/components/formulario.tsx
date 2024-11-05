@@ -1,9 +1,7 @@
 "use client"
 
-import { useRef } from "react"
-import { useState } from "react";
+import { useRef, useState } from "react"
 import { useRouter } from 'next/navigation'
-
 
 interface FormData {
     username: string;
@@ -51,7 +49,7 @@ export default function Formulario() {
         }
     
         try {
-            const response = await fetch(`http://localhost:3000/cadastro`, {
+            const response = await fetch(`http://localhost:3001/cadastro`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
