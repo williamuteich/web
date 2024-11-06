@@ -1,5 +1,3 @@
-
-
 import Link from "next/link";
 import Submenu from "./components/submenu";
 import { FaFacebook, FaInstagram, FaTwitter, FaUserAlt, FaSearch } from "react-icons/fa";
@@ -12,7 +10,6 @@ import {
     SheetTitle,
     SheetTrigger,
   } from "@/components/ui/sheet"
-import { Button } from "../ui/button";
 import { CgMenuMotion } from "react-icons/cg";
 
 
@@ -66,7 +63,6 @@ export default function Header() {
                                         <p>Login</p>
                                     </Link>
                                 </div>
-
                                 <div className="flex justify-center items-center md:hidden">
                                 <Sheet>
                                     <SheetTrigger>
@@ -117,7 +113,6 @@ export default function Header() {
                     </div>
                 </div>
             </header>
-
             <Submenu />
         </>
     );
