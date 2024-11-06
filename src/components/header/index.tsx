@@ -25,7 +25,7 @@ const linkMenu = [
 
 export default function Header() {
     return (
-        <>
+        <div className="fixed w-full z-10">
             <header className="bg-gray-900 text-white">
                 <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="flex gap-4 items-center justify-between h-16">
@@ -114,6 +114,6 @@ export default function Header() {
                 </div>
             </header>
             <Submenu />
-        </>
+        </div>
     );
 }
