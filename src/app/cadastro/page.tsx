@@ -1,7 +1,8 @@
 // components/Cadastro.js
 import Link from "next/link";
-import { Container } from "../components/container";
+
 import FormularioCadastro from "./components/formulario";
+import { Container } from "@/components/container";
 
 export default function Cadastro() {
     return (

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Container } from "../components/container";
+
 import Formulario from "./components/index";
+import { Container } from "@/components/container";
 
 export default function Login() {
     return (
