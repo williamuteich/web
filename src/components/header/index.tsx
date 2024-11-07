@@ -55,12 +55,7 @@ export default function Header() {
                                     <Atendimento />
 
                                     
-                                    <Link href="/support" className="text-gray-300 hidden  hover:text-white md:flex items-center gap-2 ">
-                                        <FaHeadset className="h-6 w-6" />
-                                        <div className="flex flex-col gap-0">
-                                            <p className="hidden md:block text-sm leading-4">Central de<br/>Atendimento</p>
-                                        </div>
-                                    </Link>
+  
 
                                     <Link href="/cart" className="relative text-gray-300 hover:text-white">
                                         <AiOutlineShoppingCart className="h-6 w-6" />
