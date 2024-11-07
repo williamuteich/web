@@ -12,7 +12,7 @@ import Autoplay from 'embla-carousel-autoplay';
 
 export function Banner() {
     return (
-        <div className="bg-slate-800 pt-[148px] md:pt-[124px]">
+        <div className="bg-slate-800  pt-[148px] md:pt-[124px]">
             <Carousel
                 opts={{
                     loop: true,
@@ -25,7 +25,7 @@ export function Banner() {
             >
                 <CarouselContent>
                     <CarouselItem>
-                        <div className="relative opacity-85 w-full h-[500px] md:h-[600px]">  {/* Ajuste a altura conforme necessário */}
+                        <div className="relative opacity-85 w-full h-[350px] md:h-[400px]">  {/* Ajuste a altura conforme necessário */}
                             <Image
                                 className='object-cover'
                                 src="/banner1.jpg"
@@ -36,7 +36,7 @@ export function Banner() {
                         </div>
                     </CarouselItem>
                     <CarouselItem>
-                        <div className="relative opacity-85 w-full h-[500px] md:h-[600px]">  {/* Ajuste a altura conforme necessário */}
+                        <div className="relative opacity-85 w-full h-[350px] md:h-[400px]">  {/* Ajuste a altura conforme necessário */}
                             <Image 
                                 className='object-cover'
                                 src="/banner1.jpg"
