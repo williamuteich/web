@@ -61,9 +61,6 @@ export function Atendimento() {
             </NavigationMenuContent>
       </NavigationMenuItem>
     </NavigationMenuList>
-
-
-
     <NavigationMenuList className="focus:bg-blue-700 hover:bg-blue-700">
       <NavigationMenuItem className="focus:bg-slate-900 hover:bg-slate-900 active:bg-slate-900">
       <NavigationMenuTrigger className="flex items-end active:bg-slate-900 p-0 hover:bg-slate-900  gap-1 bg-transparent hover:text-white">
