@@ -77,7 +77,7 @@ export default function MenuMobile() {
                                 ))}
                             </ul>
                             <ul className="border-b pb-5 mt-4 border-slate-300 border-spacing-[1px] w-full">
-                                <h2 className="text-lg mb-2 text-slate-900 font-semibold">Categorias</h2>
+                                <h2 className="text-lg text-start mb-2 text-slate-900 font-semibold">Categorias</h2>
                                 {linkCategories.map(({ name, link, icon }) => (
                                     <li key={name} className="p-2 pl-4 text-gray-900 font-serif hover:border hover:rounded text-sm text-start hover:text-white hover:bg-gray-900 w-full flex items-center gap-4">
                                         <Link className="flex gap-2" href={link}>
