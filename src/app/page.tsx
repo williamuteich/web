@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import { Banner } from "@/components/home/banner";
+import Produtos from "@/components/home/produtos";
 import Link from "next/link";
 
 
@@ -8,6 +9,7 @@ export default function Home() {
     <div>
       <Header />
       <Banner />
+      <Produtos />
     </div>
   );
 }

@@ -12,8 +12,7 @@ import {
 export default function SubBannerHeader() {
   return (
     <div>
-      {/* Banner no desktop */}
-      <div className="lg:flex gap-4 justify-between bg-gradient-to-r from-slate-900 via-slate-700 to-slate-800 p-4 hidden">
+      <div className="md:flex gap-4 justify-between bg-gradient-to-r from-slate-900 via-slate-700 to-slate-800 p-4 hidden">
         <Container>
           <div className="flex gap-4 justify-between">
             <div className="flex items-center gap-4">
@@ -43,9 +42,8 @@ export default function SubBannerHeader() {
         </Container>
       </div>
 
-      {/* Banner no mobile com carousel */}
       <Carousel 
-        className="lg:hidden "
+        className="md:hidden "
         opts={{
             loop: true,
         }}
@@ -56,7 +54,6 @@ export default function SubBannerHeader() {
         ]}
         >
         <CarouselContent className="flex gap-4">
-          {/* Primeiro item do carousel */}
           <CarouselItem className="p-3 justify-center w-full bg-gradient-to-r from-slate-900 via-slate-700 to-slate-800 flex items-center gap-4">
             <FaWhatsapp size={28} className="text-green-500 text-2xl" />
             <div className="flex flex-col items-start">
@@ -65,7 +62,6 @@ export default function SubBannerHeader() {
             </div>
           </CarouselItem>
 
-          {/* Segundo item do carousel */}
           <CarouselItem className="p-3 justify-center w-full bg-gradient-to-r from-slate-900 via-slate-700 to-slate-800 flex items-center gap-4">
             <FaUnlockAlt size={28} className="text-white text-2xl" />
             <div className="flex flex-col">
@@ -74,7 +70,6 @@ export default function SubBannerHeader() {
             </div>
           </CarouselItem>
 
-          {/* Terceiro item do carousel */}
           <CarouselItem className="p-3 justify-center w-full bg-gradient-to-r from-slate-900 via-slate-700 to-slate-800 flex items-center gap-4">
             <FaCreditCard size={28} className="text-white text-2xl" />
             <div className="flex flex-col">
