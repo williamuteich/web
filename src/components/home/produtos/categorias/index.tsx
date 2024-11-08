@@ -16,7 +16,7 @@ export function Categorias() {
     <section className="w-full px-4 mt-10">
       <div className="flex flex-col items-center gap-4 mb-6">
           <h1 className="text-2xl text-slate-700 font-semibold ">Categorias</h1>
-          <span className="bg-blue-700 p-[2px] w-[50px]"></span>
+          <span className="bg-blue-700 p-[1.5px] w-[50px]"></span>
       </div>
       <div className="overflow-x-auto">
         <div className="flex gap-4 md:gap-6 min-w-max justify-center">
