@@ -1,3 +1,5 @@
+import CardProdutos from "../components/cardProdutos";
+
 export default function CatalogoPromo() {
     return (
         <div className="mt-16 flex flex-col justify-center items-center">
@@ -6,7 +8,7 @@ export default function CatalogoPromo() {
                 <span className="bg-blue-700 p-[1.5px] w-[50px]"></span>
             </div>
             <section className="">
-                teste
+                <CardProdutos />
             </section>
         </div>
     )

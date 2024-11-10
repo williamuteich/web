@@ -1,3 +1,5 @@
+import CardProdutos from "../components/cardProdutos";
+
 export default function Novidades() {
   return (
     <div className="mt-16 flex flex-col justify-center items-center">
@@ -7,7 +9,7 @@ export default function Novidades() {
         </div>
         <section className="">
             <br/>
-            teste asdasdasd
+            <CardProdutos />
         </section>
     </div>
   )

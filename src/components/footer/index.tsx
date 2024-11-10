@@ -5,7 +5,6 @@ export function Footer() {
     const dataAtual = new Date();
     const anoAtual = dataAtual.getFullYear();
 
-    // Dados organizados em arrays de objetos
     const contatos = [
         {
             icon: <FaPhone size={18} />,
