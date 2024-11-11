@@ -4,6 +4,7 @@ import Link from "next/link";
 import FormularioCadastro from "./components/formulario";
 import { Container } from "@/components/container";
 
+
 export default function Cadastro() {
     return (
         <Container>

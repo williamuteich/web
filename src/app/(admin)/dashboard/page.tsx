@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import LogoutButton from "../login/components/LogoutButton";
+import LogoutButton from "../../(pages)/login/components/LogoutButton";
 
 interface UserDadosProps {
   id: string;
@@ -15,7 +15,7 @@ export default async function Dashboard() {
     redirect("/login");
   }
 
-  console.log(session)
+  console.log("retornando da sessao", session)
 
   const { id, name, email }: UserDadosProps = session.user as UserDadosProps;
 

@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Header from "@/components/header";
-import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Ecommerce",
@@ -18,9 +15,7 @@ export default function RootLayout({
       <body
       className="bg-gray-100"
       >
-         <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

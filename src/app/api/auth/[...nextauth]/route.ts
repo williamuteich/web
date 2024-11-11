@@ -22,11 +22,13 @@ const handler = NextAuth({
         const data = await res.json();
 
         if (res.ok && data.user) {
+          console.log("vai", data.user)
           return {
+            token: data.user.token,
             id: data.user.id,
             name: data.user.name,
             email: data.user.email,
-            sub: data.user.id
+            active: data.user.active,
           };
         }
 
@@ -35,22 +37,15 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      const customUser = user as unknown as any
-      if (user) {
-        return {
-          ...token,
-        }
+    async session({session, token, user,}){
+      session.user = { ...session.user, id: user.id } as {
+        id: string,
+        name: string,
+        email: string
       }
-      return token;
-    },
 
-    async session({ session, token }) {
-      if (token.user) {
-        session.user = token.user;
-      }
-      return session;
-    },
+      return session
+    }
   }
 });
 

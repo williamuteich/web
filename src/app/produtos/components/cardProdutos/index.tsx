@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FaMinus, FaPlus, FaShoppingCart } from 'react-icons/fa'; // Ícones
 
 const produtos = [
@@ -81,32 +82,35 @@ export default function CardProdutos() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {produtos.map((produto) => (
           <div key={produto.id} className="bg-white border border-gray-200 rounded-xl shadow-md p-4 flex flex-col items-center">
-            <img
-              src={produto.imagem}
-              alt={produto.titulo}
-              className="w-full h-48 object-cover rounded-lg mb-4"
-            />
-            
-            <h3 className="text-xl font-semibold text-center text-gray-800 mb-3">
-              {produto.titulo}
-            </h3>
-            
-            <p className="text-sm text-gray-500 text-center mb-2">
-              {produto.descricao}
-            </p>
+            {/* Link diretamente sem a tag <a> */}
+            <Link href={`/produtos/${produto.titulo}`} className="group w-full">
+              <img
+                src={produto.imagem}
+                alt={produto.titulo}
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
+              
+              {/* Aplica a cor azul no hover sobre o link */}
+              <h3 className="text-xl font-semibold text-center text-gray-800 mb-3 group-hover:text-blue-500 transition-colors">
+                {produto.titulo}
+              </h3>
+              
+              <p className="text-sm text-gray-500 text-center mb-2">
+                {produto.descricao}
+              </p>
 
-            <p className="text-lg font-semibold text-gray-800 mb-1">
-              {produto.preco} <span className="text-sm text-gray-400">no PIX</span>
-            </p>
+              <p className="text-lg text-center font-semibold text-gray-800 mb-1">
+                {produto.preco} <span className="text-sm text-center text-gray-400">no PIX</span>
+              </p>
 
-            <p className="text-sm text-gray-400 line-through mb-2">
-              {produto.precoAnterior}
-            </p>
-            
-            <p className="text-sm text-gray-800 mb-4 text-center">
-              ou até 2x de <b>R$ {produto.precoParcelado}</b> SEM JUROS
-            </p>
-
+              <p className="text-sm text-center text-gray-400 line-through mb-2">
+                {produto.precoAnterior}
+              </p>
+              
+              <p className="text-sm text-gray-800 mb-4 text-center">
+                ou até 2x de <b>R$ {produto.precoParcelado}</b> SEM JUROS
+              </p>
+            </Link>
             <div className="w-full border-t border-gray-200 pt-3 mt-4">
               <div className="flex items-center justify-between w-full border border-gray-200 rounded-lg p-2">
                 <button 

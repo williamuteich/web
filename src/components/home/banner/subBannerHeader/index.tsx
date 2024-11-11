@@ -1,5 +1,4 @@
 import { FaWhatsapp, FaUnlockAlt, FaCreditCard } from "react-icons/fa";
-import { Container } from '@/components/container';
 
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -8,6 +7,7 @@ import {
     CarouselContent,
     CarouselItem,
 } from "@/components/ui/carousel";
+import { Container } from "@/components/container";
 
 export default function SubBannerHeader() {
   return (
