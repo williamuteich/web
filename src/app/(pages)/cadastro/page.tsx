@@ -3,9 +3,17 @@ import Link from "next/link";
 
 import FormularioCadastro from "./components/formulario";
 import { Container } from "@/components/container";
+import { getServerSession } from "next-auth";
+import { auth as authOptions } from "@/lib/auth-config";
+import { redirect } from "next/navigation";
 
+export default async function Cadastro() {
+    const session = await getServerSession(authOptions)
 
-export default function Cadastro() {
+    if (session) {
+        redirect("/")
+    }
+
     return (
         <Container>
             <div className="flex items-center justify-center min-h-screen">

@@ -1,25 +1,16 @@
+// pages/admin/dashboard.tsx
 
-import { getServerSession } from "next-auth";
-import { auth as authOptions} from "@/lib/auth-config";
-import LogoutButton from "../../(pages)/login/components/LogoutButton";
-import { redirect } from "next/navigation";
 
-export default async function Dashboard() {
-  const session = await getServerSession(authOptions)
-  
-  if (!session) {
-    redirect("/login")
-  }
 
+
+export default function Dashboard() {
   return (
-    <div className="pt-48">
-      {session && (
-        <div>
-            {JSON.stringify(session, null, 2)}
-        </div>
-      )}
-      <div>
-        <LogoutButton />
+    <div>
+      <h1 className="text-2xl font-bold">Bem-vindo ao Dashboard!</h1>
+      
+      <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+        <h2 className="text-xl font-semibold">Resumo</h2>
+        <p>Algumas estatísticas e informações do painel...</p>
       </div>
     </div>
   );

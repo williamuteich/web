@@ -8,7 +8,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"; 
 
-import { FaUserAlt, FaSignInAlt, FaUserPlus, FaHeart, FaList } from "react-icons/fa"; 
+import { FaUserCircle, FaUserAlt, FaSignInAlt, FaStore, FaUserPlus, FaHeart, FaLaptop } from "react-icons/fa"; 
 import Link from "next/link";
 
 interface MenuContaProps {
@@ -19,7 +19,6 @@ export default function MenuConta({isLoggedIn}: MenuContaProps) {
     return (
         <NavigationMenu className="md:flex gap-4 mr-4 hidden">
 
-            {/* Caso o usuário esteja logado */}
             {isLoggedIn ? (
                 <NavigationMenuList className="focus:bg-blue-700 hover:bg-blue-700">
                     <NavigationMenuItem className="focus:bg-slate-900 hover:bg-slate-900 active:bg-slate-900">
@@ -29,22 +28,26 @@ export default function MenuConta({isLoggedIn}: MenuContaProps) {
                                 <span className="font-bold text-slate-300">Minha Conta</span>
                             </div>
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="bg-gray-800 text-slate-300 rounded-md shadow-lg w-full">
+                        <NavigationMenuContent className=" bg-gray-800 text-slate-300 rounded-md shadow-lg w-full" >
                             <nav className="flex flex-col gap-2 pt-1 pl-4 pr-4 py-2 text-sm hover:bg-white bg-white w-72">
                                 <div className="pb-2 pr-4 pl-4">
-                                    <h6 className="text-slate-700 font-bold text-lg">Conta do Usuário</h6>
+                                    <h6 className="text-slate-500 font-bold text-lg">Minha Área</h6>
                                     <div className="flex flex-col gap-2 mt-2">
                                         <Link href="/perfil" className="flex p-2 pt-[5px] pb-[5px] text-slate-800 text-base items-center gap-2 hover:bg-slate-300 rounded-md">
-                                            <FaUserAlt size={24} className="text-slate-700" />
-                                            Perfil
-                                        </Link>
-                                        <Link href="/desejos" className="flex p-2 pt-[5px] pb-[5px] text-slate-800 text-base items-center gap-2 hover:bg-slate-300 rounded-md">
-                                            <FaHeart size={24} className="text-slate-700" />
-                                            Meus Desejos
+                                            <FaUserCircle size={24} className="text-slate-500" />
+                                            Meu Perfil
                                         </Link>
                                         <Link href="/pedidos" className="flex p-2 pt-[5px] pb-[5px] text-slate-800 text-base items-center gap-2 hover:bg-slate-300 rounded-md">
-                                            <FaList size={24} className="text-slate-700" />
+                                            <FaLaptop size={24} className="text-slate-500" />
                                             Meus Pedidos
+                                        </Link>
+                                        <Link href="/desejos" className="flex p-2 pt-[5px] pb-[5px] text-slate-800 text-base items-center gap-2 hover:bg-slate-300 rounded-md">
+                                            <FaHeart size={24} className="text-slate-500" />
+                                            Desejos
+                                        </Link>
+                                        <Link href="/desejos" className="flex p-2 pt-[5px] pb-[5px] text-slate-800 text-base items-center gap-2 hover:bg-slate-300 rounded-md">
+                                            <FaStore size={24} className="text-slate-500" />
+                                            Rastrear Pedido
                                         </Link>
                                     </div>
                                 </div>
@@ -70,14 +73,14 @@ export default function MenuConta({isLoggedIn}: MenuContaProps) {
                         <NavigationMenuContent className="bg-gray-800 text-slate-300 rounded-md shadow-lg w-full">
                             <nav className="flex flex-col gap-2 pt-1 pl-4 pr-4 py-2 text-sm hover:bg-white bg-white w-72">
                             <div className="pb-2 pr-4 pl-4">
-                                <h6 className="text-slate-700 font-bold text-lg">Entrar ou Criar Conta</h6>
+                                <h6 className="text-slate-500 font-bold text-lg">Entrar ou Criar Conta</h6>
                                 <div className="flex flex-col gap-0 mt-2">
                                 <Link href="/login" className="flex p-2 pt-[5px] pb-[5px] text-slate-800 text-base items-center gap-2  hover:bg-slate-300 rounded-md">
-                                    <FaSignInAlt size={24} className="text-slate-700" />
+                                    <FaSignInAlt size={24} className="text-slate-500" />
                                     Entrar
                                 </Link>
                                 <Link href="/cadastro" className="flex p-2 pt-[5px] pb-[5px] text-slate-800 text-base items-center gap-2 hover:bg-slate-300 rounded-md">
-                                    <FaUserPlus size={24} className="text-slate-700" />
+                                    <FaUserPlus size={24} className="text-slate-500" />
                                     Criar uma Conta
                                 </Link>
                                 </div>
