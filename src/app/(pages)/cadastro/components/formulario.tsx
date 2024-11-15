@@ -66,7 +66,7 @@ export default function Formulario() {
                 setCampoForm(prev => ({ ...prev, errors: [errorResponse.messagem || "Erro desconhecido"] }));
                 return;
             }
-            router.push('/dashboard');
+            router.push('/login');
         } catch (error) {
             setCampoForm(prev => ({ ...prev, errors: ["Erro ao tentar fazer cadastro"] }));
         }

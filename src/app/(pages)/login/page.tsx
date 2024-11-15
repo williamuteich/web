@@ -2,8 +2,16 @@ import Link from "next/link";
 
 import Formulario from "./components/LoginForm";
 import { Container } from "@/components/container";
+import { getServerSession } from "next-auth";
+import { auth as authOptions } from "@/lib/auth-config";
+import { redirect } from "next/navigation";
 
-export default function Login() {
+export default async function Login() {
+    const session = await getServerSession(authOptions)
+
+    if (session) {
+        redirect("/")
+    }
     return (
         <Container>
             <div className="flex items-center justify-center min-h-screen ">

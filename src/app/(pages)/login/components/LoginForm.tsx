@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react"
 
 export default function Formulario() {
+
     async function login(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
 
@@ -16,6 +17,7 @@ export default function Formulario() {
         signIn("credentials", {
             ...data,
             callbackUrl: "/dashboard"
+
         })
     }
 
