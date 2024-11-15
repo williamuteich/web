@@ -19,11 +19,11 @@ export default function RootLayout({
       <body
       className="bg-gray-100"
       >
-        <Header />
         <AuthProvider>
-          {children}
+          <Header />
+            {children}
+          <Footer />
         </AuthProvider>
-        <Footer />
       </body>
     </html>
   );

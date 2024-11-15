@@ -1,12 +1,19 @@
 import Link from "next/link";
 import Submenu from "./components/submenu";
+
+import { getServerSession } from "next-auth";
+import { auth as authOptions} from "@/lib/auth-config";
+
 import {  FaSearch } from "react-icons/fa";
 
-import { Atendimento } from "./components/menuLinks";
 import Carrinho from "./components/carrinho";
 import MenuMobile from "./components/menuMobile";
+import MenuAtendimento from "./components/menuLinks/MenuAtendimento";
+import MenuConta from "./components/menuLinks/MenuConta";
 
-export default function Header() {
+export default async function Header() {
+    const session = await getServerSession(authOptions)
+    const isLoggedIn = !!session;
 
     return (
         <header className="fixed w-full z-50">
@@ -31,7 +38,10 @@ export default function Header() {
                                 </div>
 
                                 <div className="flex items-center gap-2 4">
-                                    <Atendimento />
+                                    <div className="flex gap-2">
+                                        <MenuAtendimento />
+                                        <MenuConta isLoggedIn={isLoggedIn}/>
+                                    </div>
                                     <Carrinho />
                                 </div>
 
