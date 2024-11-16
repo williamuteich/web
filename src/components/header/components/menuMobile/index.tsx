@@ -3,8 +3,6 @@ import { BiMenu } from 'react-icons/bi';
 import { getServerSession } from "next-auth";
 import { auth as authOptions} from "@/lib/auth-config";
 
-import { UserSession } from "../../../../../types/userSession";
-
 import {
     Sheet,
     SheetContent,
@@ -14,7 +12,9 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-import LogoutButton from "@/app/(pages)/login/components/LogoutButton";
+import { LogoutButton } from "@/app/(pages)/login/components/LogoutButton";
+import { typeUserSession } from "../../../../../types/typeUserSession";
+
 
 const linkMenu = [
     { name: "Meu Perfil", link: "/shop", icon: <FaUserCircle /> },  
@@ -38,10 +38,19 @@ const linkContatos = [
   ];
   
 
+  interface User {
+    name: string | null
+    email: string | null;
+    role: string | null;
+  }
+  
+  interface Session {
+    user?: User;
+  }
 
 export default async function MenuMobile() {
-    const session = await getServerSession(authOptions) as { user?: UserSession } || null;
-    const userName = session?.user?.name || "Visitante";
+    const session = await getServerSession(authOptions) as Session;
+
     
     return (
         <div className="flex ml-4 justify-center items-center md:hidden">
@@ -60,8 +69,8 @@ export default async function MenuMobile() {
                                 </Link>
 
                                 {session ? (
-                                    <div className=" flex justify-between w-full">
-                                        <p className="text-slate-900 font-medium text-sm hover:text-gray-400 transition-colors duration-200 ease-in-out">{userName}</p>
+                                    <div className=" flex justify-between items-center w-full">
+                                        <p className="text-slate-900 font-medium text-sm hover:text-gray-400 transition-colors duration-200 ease-in-out">{session?.user?.name || null}</p>
                                         <p className="ml-auto underline text-slate-900 font-medium text-sm cursor-pointer hover:text-red-500 transition-all duration-200 ease-in-out"><LogoutButton /></p>
                                     </div>
 

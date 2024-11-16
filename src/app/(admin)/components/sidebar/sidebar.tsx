@@ -1,13 +1,10 @@
-// components/admin/Sidebar.tsx
-
-import { FaHome, FaUserCircle, FaTshirt, FaCog, FaSignOutAlt } from 'react-icons/fa'; 
+import { FaHome, FaUserCircle, FaCog, FaBoxOpen, FaStore, FaEnvelope } from 'react-icons/fa'; 
 import { LogoutDashboard } from "../../../(pages)/login/components/LogoutButton";
 import Link from 'next/link';
 
 export default function Sidebar() {
   return (
     <div className="w-64 bg-gray-800 text-white flex flex-col justify-between min-h-screen">
-      
       <div>
         <div className="p-4 text-center">
             <h2 className="text-lg font-semibold">Admin Dashboard</h2>
@@ -22,7 +19,7 @@ export default function Sidebar() {
                 </Link>
             </li>
             <li>
-                <Link href="/users">
+                <Link href="/usuarios">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                         <FaUserCircle size={24}/> Usuários
                     </div>
@@ -31,7 +28,21 @@ export default function Sidebar() {
             <li>
                 <Link href="/Produtos">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
-                        <FaTshirt size={24}/> Produtos
+                        <FaBoxOpen size={24}/> Produtos
+                    </div>
+                </Link>
+            </li>
+            <li>
+                <Link href="/Vendas">
+                    <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
+                        <FaStore size={24}/> Vendas
+                    </div>
+                </Link>
+            </li>
+            <li>
+                <Link href="/Contatos">
+                    <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
+                        <FaEnvelope size={24}/> Contatos
                     </div>
                 </Link>
             </li>
