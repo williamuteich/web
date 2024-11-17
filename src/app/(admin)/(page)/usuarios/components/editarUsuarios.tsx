@@ -1,93 +1,215 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface EditarUsuariosProps {
-    id: number; // Altere de string para number
-    token: string;
+  id: number;
+  token: string;
 }
 
 export function EditarUsuarios({ id, token }: EditarUsuariosProps) {
-    return (
-        <div className="w-full px-4 py-6">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Editar Usuários</h2>
+  const [name, setName] = useState("111111 teste");
+  const [email, setEmail] = useState("testeeee@example.com");
+  const [permissao, setPermissao] = useState("user");
 
-            <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">
-        <Card>
-          <CardHeader>
-            <CardTitle>Account</CardTitle>
-            <CardDescription>
-              Make changes to your account here. Click save when you're done.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" defaultValue="Pedro Duarte" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="username">Username</Label>
-              <Input id="username" defaultValue="@peduarte" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button>Save changes</Button>
-          </CardFooter>
-        </Card>
-      </TabsContent>
-      <TabsContent value="password">
-        <Card>
-          <CardHeader>
-            <CardTitle>Password</CardTitle>
-            <CardDescription>
-              Change your password here. After saving, you'll be logged out.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="current">Current password</Label>
-              <Input id="current" type="password" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="new">New password</Label>
-              <Input id="new" type="password" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button>Save password</Button>
-          </CardFooter>
-        </Card>
-      </TabsContent>
-    </Tabs>
-        </div>
-    )
-}
+  const [endereco, setEndereco] = useState({
+    estado: "Rio Grande Do Sul",
+    cidade: "Porto Alegre",
+    logradouro: "Rua das Flores",
+    numero: "123",
+    complemento: "Apto 45",
+    cep: "01234-567",
+    pais: "Brasil",
+    tipo: "Residencial",
+  });
 
-export function EditUser() {
-    return (
-        <div  className="bg-slate-800 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-400">
-            teste
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePermissaoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPermissao(event.target.value);
+  };
+
+  const handleEnderecoChange = (field: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEndereco((prev) => ({ ...prev, [field]: event.target.value }));
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="bg-slate-800 text-white" variant="outline">
+          Editar
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-screen-[500px]">
+        <DialogHeader>
+          <DialogTitle>Editar informações</DialogTitle>
+          <DialogDescription>
+            Faça alterações no seu perfil aqui. Clique em salvar quando terminar.
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="grid gap-4 py-4">
+          {/* Nome */}
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="name" className="text-right">
+              Nome
+            </Label>
+            <Input
+              id="name"
+              value={name}
+              onChange={handleNameChange}
+              className="col-span-3"
+            />
+          </div>
+
+          {/* Email */}
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="email" className="text-right">
+              Email
+            </Label>
+            <Input
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+              className="col-span-3"
+            />
+          </div>
+
+          {/* Permissão */}
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="permissao" className="text-right">
+              Permissão
+            </Label>
+            <Input
+              id="permissao"
+              value={permissao}
+              onChange={handlePermissaoChange}
+              className="col-span-3"
+            />
+          </div>
+
+          {/* Endereço */}
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="estado" className="text-right">
+                Estado
+              </Label>
+              <Input
+                id="estado"
+                value={endereco.estado}
+                onChange={handleEnderecoChange("estado")}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="cidade" className="text-right">
+                Cidade
+              </Label>
+              <Input
+                id="cidade"
+                value={endereco.cidade}
+                onChange={handleEnderecoChange("cidade")}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="logradouro" className="text-right">
+                Logradouro
+              </Label>
+              <Input
+                id="logradouro"
+                value={endereco.logradouro}
+                onChange={handleEnderecoChange("logradouro")}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="numero" className="text-right">
+                Número
+              </Label>
+              <Input
+                id="numero"
+                value={endereco.numero}
+                onChange={handleEnderecoChange("numero")}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="complemento" className="text-right">
+                Complemento
+              </Label>
+              <Input
+                id="complemento"
+                value={endereco.complemento}
+                onChange={handleEnderecoChange("complemento")}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="cep" className="text-right">
+                CEP
+              </Label>
+              <Input
+                id="cep"
+                value={endereco.cep}
+                onChange={handleEnderecoChange("cep")}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="pais" className="text-right">
+                País
+              </Label>
+              <Input
+                id="pais"
+                value={endereco.pais}
+                onChange={handleEnderecoChange("pais")}
+                className="col-span-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="tipo" className="text-right">
+                Tipo
+              </Label>
+              <Input
+                id="tipo"
+                value={endereco.tipo}
+                onChange={handleEnderecoChange("tipo")}
+                className="col-span-3"
+              />
+            </div>
+          </div>
         </div>
-    )
+
+        <DialogFooter>
+          <Button type="submit">Salvar alterações</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
 }

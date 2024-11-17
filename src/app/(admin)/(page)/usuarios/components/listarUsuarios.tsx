@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ConfirmDeleteUser } from "./deleteUser";
-import { EditUser } from "./editarUsuarios";
+import { EditarUsuarios } from "./editarUsuarios";
 
 interface Permissao {
     id: number;
@@ -89,7 +89,7 @@ export function TodosUsuarios({ token }: { token: string }) {
                             <td className="px-4 py-3 text-end">
 
                             <div className="flex justify-end">
-                                <EditUser id={user.id} token={token} />
+                                <EditarUsuarios id={user.id} token={token} />
                                 <ConfirmDeleteUser id={user.id} token={token} onDelete={updateUsersAfterDelete} />
                             </div>
                             </td>
