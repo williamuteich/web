@@ -19,14 +19,13 @@ import {
 } from "@/components/ui/tabs"
 
 interface EditarUsuariosProps {
-    id: number; 
+    id: number; // Altere de string para number
     token: string;
 }
 
 export function EditarUsuarios({ id, token }: EditarUsuariosProps) {
     return (
-        <div className="w-full h-screen relative">
-            <div className="px-4 py-6 bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div className="w-full px-4 py-6">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Editar Usuários</h2>
 
             <Tabs defaultValue="account" className="w-[400px]">
@@ -82,6 +81,13 @@ export function EditarUsuarios({ id, token }: EditarUsuariosProps) {
       </TabsContent>
     </Tabs>
         </div>
+    )
+}
+
+export function EditUser() {
+    return (
+        <div  className="bg-slate-800 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-400">
+            teste
         </div>
     )
 }

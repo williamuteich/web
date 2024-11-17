@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ConfirmDeleteUser } from "./deleteUser";
-import { EditarUsuarios } from "./editarUsuarios";
-import { AlertDialog, AlertDialogTrigger } from "@radix-ui/react-alert-dialog";
+import { EditUser } from "./editarUsuarios";
 
 interface Permissao {
     id: number;
@@ -27,7 +26,6 @@ export function TodosUsuarios({ token }: { token: string }) {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    const [showEdit, setShowEdit] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -69,14 +67,8 @@ export function TodosUsuarios({ token }: { token: string }) {
         return <div>{error}</div>;
     }
 
-    const handleEdit = (): void => {
-        setShowEdit(!showEdit);
-    }
-
-
-
     return (
-        <div className="overflow-x-auto w-full bg-white shadow-md rounded-lg mainDivToModal">
+        <div className="overflow-x-auto w-full bg-white shadow-md rounded-lg">
             <table className="min-w-full table-auto">
                 <thead className="bg-gray-700 text-left text-sm font-medium text-white">
                     <tr>
@@ -95,20 +87,14 @@ export function TodosUsuarios({ token }: { token: string }) {
                             <td className="px-4 py-3">{user.email}</td>
                             <td className="px-4 py-3">{user.permissao?.nome || 'Default'}</td>
                             <td className="px-4 py-3 text-end">
-                            {showEdit && (
-                                    
-                                        <EditarUsuarios id={user.id} token={token} />
 
-                                )}
-                                
+                            <div className="flex justify-end">
+                                <EditUser id={user.id} token={token} />
                                 <ConfirmDeleteUser id={user.id} token={token} onDelete={updateUsersAfterDelete} />
-                                <button onClick={handleEdit} className="ml-2 bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
-                                    Editar
-                                </button>
+                            </div>
                             </td>
-                            
-
                         </tr>
+                        
                         
                     ))}
                 </tbody>

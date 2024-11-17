@@ -29,7 +29,7 @@ export function ConfirmDeleteUser({ id, token, onDelete }) {
             });
 
             const data = await response.json();
-            console.log("tá fazendo requisição", data)
+
             if (response.ok) {
                 toast.success('Usuário excluído com sucesso!', {
                     duration: 3000,
