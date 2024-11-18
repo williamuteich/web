@@ -16,6 +16,7 @@ export default async function Dashboard() {
   const session = await getServerSession(authOptions) as Session;
 
   
+  
   return (
     <div>
       <h1 className="text-2xl font-bold">Bem-vindo ao Dashboard, {session?.user?.name || null}!</h1>

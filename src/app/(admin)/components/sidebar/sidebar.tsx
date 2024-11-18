@@ -10,6 +10,7 @@ export default function Sidebar() {
             <h2 className="text-lg font-semibold">Admin Dashboard</h2>
         </div>
         
+        
         <ul className="space-y-2 p-4">
             <li>
                 <Link href="/dashboard">

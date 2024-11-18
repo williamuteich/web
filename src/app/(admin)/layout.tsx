@@ -15,6 +15,7 @@ export default async function AdminLayout({ children }: LayoutProps) {
     redirect('/login');
   }
 
+
   return (
     <div className="flex min-h-screen">
       <Sidebar />
@@ -24,3 +25,4 @@ export default async function AdminLayout({ children }: LayoutProps) {
     </div>
   );
 }
+

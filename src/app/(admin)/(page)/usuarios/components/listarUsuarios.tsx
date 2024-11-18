@@ -94,12 +94,9 @@ export function TodosUsuarios({ token }: { token: string }) {
                             </div>
                             </td>
                         </tr>
-                        
-                        
                     ))}
                 </tbody>
             </table>
-            
         </div>
     );
 }
