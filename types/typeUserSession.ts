@@ -2,6 +2,7 @@ export interface DadosUsuario {
   id: number;
   name: string;
   email: string;
+  active: boolean;
   permissao: Permissao;
   endereco: Endereco[]; 
   emailVerified: boolean;
