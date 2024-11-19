@@ -1,9 +1,24 @@
-export interface typeUserSession {
-    name: string | null
-    email: string | null;
-    role: string | null;
+export interface DadosUsuario {
+  id: number;
+  name: string;
+  email: string;
+  permissao: Permissao;
+  endereco: Endereco[]; 
+  emailVerified: boolean;
 }
-  
-  interface Session {
-    user?: typeUserSession;
-  }
+
+export interface Permissao {
+  id: number;
+  nome: string;
+  userId: number;
+}
+
+export interface Endereco { 
+  id: number;
+  estado: string;
+  cidade: string;
+  logradouro: string;
+  numero: number;
+  complemento: string;
+  cep: string;
+}

@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { ConfirmDeleteUser } from "./deleteUser";
-import { EditarUsuarios } from "./editarUsuarios";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 interface Permissao {
     id: number;
@@ -19,8 +20,6 @@ interface User {
     endereco: any[];
     emailVerified: boolean;
 }
-
-
 
 export function TodosUsuarios({ token }: { token: string }) {
     const [users, setUsers] = useState<User[]>([]);
@@ -89,7 +88,11 @@ export function TodosUsuarios({ token }: { token: string }) {
                             <td className="px-4 py-3 text-end">
 
                             <div className="flex justify-end">
-                                <EditarUsuarios id={user.id} token={token} />
+                                <Link href={`/usuarios/${user.id}`}>
+                                    <Button>
+                                        Editar
+                                    </Button>
+                                </Link>
                                 <ConfirmDeleteUser id={user.id} token={token} onDelete={updateUsersAfterDelete} />
                             </div>
                             </td>

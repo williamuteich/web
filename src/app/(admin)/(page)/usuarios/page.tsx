@@ -1,6 +1,5 @@
 import { getServerSession } from "next-auth";
 import { auth as authOptions } from "@/lib/auth-config";
-import { ConfirmDeleteUser } from "./components/deleteUser";
 import { TodosUsuarios } from "./components/listarUsuarios";
 
 
