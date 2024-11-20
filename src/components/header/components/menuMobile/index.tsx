@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { LogoutButton } from "@/app/(pages)/login/components/LogoutButton";
-import { typeUserSession } from "../../../../../types/typeUserSession";
 
 
 const linkMenu = [

@@ -2,27 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { ConfirmDeleteUser } from "./deleteUser";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-
-interface Permissao {
-    id: number;
-    nome: string;
-    userId: number;
-}
-
-interface User {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-    permissao: Permissao;
-    endereco: any[];
-    emailVerified: boolean;
-}
+import EditUser from "./editUser";
+import { DadosUsuario } from "../../../../../../types/typeUserSession";
 
 export function TodosUsuarios({ token }: { token: string }) {
-    const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useState<DadosUsuario[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -79,7 +63,7 @@ export function TodosUsuarios({ token }: { token: string }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map((user: User) => (
+                    {users.map((user) => (
                         <tr key={user.id} className="border-b border-gray-200 hover:bg-gray-50">
                             <td className="px-4 py-3">{user.id}</td>
                             <td className="px-4 py-3">{user.name}</td>
@@ -88,11 +72,7 @@ export function TodosUsuarios({ token }: { token: string }) {
                             <td className="px-4 py-3 text-end">
 
                             <div className="flex justify-end">
-                                <Link href={`/usuarios/${user.id}`}>
-                                    <Button>
-                                        Editar
-                                    </Button>
-                                </Link>
+                                <EditUser user={user} />
                                 <ConfirmDeleteUser id={user.id} token={token} onDelete={updateUsersAfterDelete} />
                             </div>
                             </td>
