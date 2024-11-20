@@ -43,7 +43,7 @@ export default function EditUser({ user }: EditUserProps) {
             </DialogTrigger>
             <DialogContent className="max-w-7xl">
                 <DialogHeader>
-                    <DialogTitle>Atualizar Dados do Usuário</DialogTitle>
+                    <DialogTitle className="text-2xl underline">Atualizar Dados do Usuário</DialogTitle>
                 </DialogHeader>
                 <div className="flex items-center gap-4">
                     <Avatar className="mt-6 w-32 h-auto">
@@ -110,7 +110,6 @@ export default function EditUser({ user }: EditUserProps) {
                                 <SelectContent>
                                     <SelectItem value="admin">Administrador</SelectItem>
                                     <SelectItem value="user">Usuário</SelectItem>
-                                    <SelectItem value="moderator">Moderador</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
