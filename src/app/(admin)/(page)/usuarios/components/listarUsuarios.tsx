@@ -38,6 +38,8 @@ export function TodosUsuarios({ token }: { token: string }) {
         }
     }, [token]);
 
+    console.log(users);
+
     const updateUsersAfterDelete = (deletedUserId: number) => {
         setUsers((prevUsers) => prevUsers.filter(user => user.id !== deletedUserId));
     };
@@ -72,7 +74,7 @@ export function TodosUsuarios({ token }: { token: string }) {
                             <td className="px-4 py-3 text-end">
 
                             <div className="flex justify-end">
-                                <EditUser user={user} />
+                                <EditUser user={user} token={token} />
                                 <ConfirmDeleteUser id={user.id} token={token} onDelete={updateUsersAfterDelete} />
                             </div>
                             </td>

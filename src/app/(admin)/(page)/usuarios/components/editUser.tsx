@@ -17,43 +17,94 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface EditUserProps {
     user: DadosUsuario;
+    token: string;
 }
 
-export default function EditUser({ user }: EditUserProps) {
+export default function EditUser({ user, token }: EditUserProps) {
     const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
-            setAvatarFile(file);  
+            setAvatarFile(file);
         }
     };
 
     const getAvatarUrl = () => {
         if (avatarFile) {
-            return URL.createObjectURL(avatarFile); 
+            return URL.createObjectURL(avatarFile);
         }
-        return "https://github.com/shadcn.png"; 
+        return "https://github.com/shadcn.png";
     };
+
+
+    async function changeDataUser(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        try {
+            const formData = new FormData(e.currentTarget);
+
+            const data = {
+                id: user?.id || '',
+                name: formData.get("name"),
+                active: formData.get("active") === "true",
+                email: formData.get("email"),
+                permissao: {
+                    nome: formData.get("permissao"),
+                },
+                endereco: {
+                    id: user?.endereco?.[0]?.id || null,
+                    estado: formData.get("estado"),
+                    cidade: formData.get("cidade"),
+                    logradouro: formData.get("endereco"),
+                    numero: formData.get("numero"),
+                    complemento: formData.get("complemento"),
+                    cep: formData.get("cep"),
+                },
+            };
+
+            console.log("Dados que estão sendo enviados para o backend:", JSON.stringify(data, null, 2));
+
+            const response = await fetch("http://localhost:3001/atualizar-usuario", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                console.log(result)
+                //location.reload();
+            } else {
+                console.error("Erro ao atualizar o usuário:", result);
+            }
+        } catch (err) {
+            console.error("Erro ao enviar dados:", err);
+        }
+    }
 
     return (
         <Dialog>
             <DialogTrigger asChild>
                 <Button>Editar</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-7xl">
+            <DialogContent className="max-w-7xl" aria-describedby="dialog-description">
                 <DialogHeader>
                     <DialogTitle className="text-2xl underline">Atualizar Dados do Usuário</DialogTitle>
                 </DialogHeader>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4" id="dialog-description">
                     <Avatar className="mt-6 w-32 h-auto">
-                        <AvatarImage src={getAvatarUrl()} /> 
+                        <AvatarImage src={getAvatarUrl()} />
                         <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <div>
                         <h2 className="text-slate-900 font-semibold text-2xl">{user.name}</h2>
                         <Button
-                            onClick={() => document.getElementById("image-input")?.click()} 
+                            onClick={() => document.getElementById("image-input")?.click()}
                             className="mt-4"
                         >
                             Trocar Imagem
@@ -62,12 +113,12 @@ export default function EditUser({ user }: EditUserProps) {
                     <input
                         type="file"
                         id="image-input"
-                        onChange={handleImageChange}  
-                        accept="image/*" 
-                        className="hidden" 
+                        onChange={handleImageChange}
+                        accept="image/*"
+                        className="hidden"
                     />
                 </div>
-                <form className="grid gap-4 py-4">
+                <form onSubmit={changeDataUser} className="grid gap-4 py-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                             <Label htmlFor="name" className="text-sm font-medium text-gray-700">
@@ -103,9 +154,9 @@ export default function EditUser({ user }: EditUserProps) {
                             <Label htmlFor="permissao" className="text-sm font-medium text-gray-700">
                                 Permissão
                             </Label>
-                            <Select defaultValue={user.permissao?.nome || "user"}>
-                                <SelectTrigger className="mt-1 w-full border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
-                                    <SelectValue placeholder="Selecione a Permissão" />
+                            <Select name="permissao" defaultValue={user.permissao ? user.permissao.nome : "user"}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Selecione a permissão" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="admin">Administrador</SelectItem>
@@ -116,13 +167,13 @@ export default function EditUser({ user }: EditUserProps) {
 
                         <div>
                             <Label className="text-sm font-medium text-gray-700">Ativo</Label>
-                            <Select defaultValue={user.active ? "Ativo" : "Inativo"}>
-                                <SelectTrigger className="mt-1 w-full border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500">
-                                    <SelectValue placeholder="Selecione o Status" />
+                            <Select name="active" defaultValue={user.active ? "true" : "false"}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Selecione se está ativo" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="Ativo">Ativo</SelectItem>
-                                    <SelectItem value="Inativo">Inativo</SelectItem>
+                                    <SelectItem value="true">Ativo</SelectItem>
+                                    <SelectItem value="false">Inativo</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
