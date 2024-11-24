@@ -12,8 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { DadosUsuario } from "../../../../../../types/typeUserSession";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DadosUsuario } from "../../../../../../../types/typeUserSession";
 
 interface EditUserProps {
     user: DadosUsuario;
@@ -96,7 +95,9 @@ export default function EditUser({ user, token }: EditUserProps) {
                 <DialogHeader>
                     <DialogTitle className="text-2xl underline">Atualizar Dados do Usuário</DialogTitle>
                 </DialogHeader>
-                <div className="flex items-center gap-4" id="dialog-description">
+                
+                
+                {/*<div className="flex items-center gap-4" id="dialog-description">
                     <Avatar className="mt-6 w-32 h-auto">
                         <AvatarImage src={getAvatarUrl()} />
                         <AvatarFallback>CN</AvatarFallback>
@@ -117,7 +118,7 @@ export default function EditUser({ user, token }: EditUserProps) {
                         accept="image/*"
                         className="hidden"
                     />
-                </div>
+                </div>*/}
                 <form onSubmit={changeDataUser} className="grid gap-4 py-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>

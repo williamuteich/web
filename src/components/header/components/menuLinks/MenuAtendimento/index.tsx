@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button"; 
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -8,8 +7,9 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"; 
 
-import { FaHeadset, FaWhatsapp, FaEnvelope, FaPaperPlane } from "react-icons/fa"; 
+import { FaHeadset, FaWhatsapp, FaEnvelope } from "react-icons/fa"; 
 import Link from "next/link";
+import ButtonFormulario from "./components/buttonFormulario";
 
 export default function MenuAtendimento() {
     return (
@@ -49,11 +49,8 @@ export default function MenuAtendimento() {
                                 williamuteich14@gmail.com
                                 </Link>
                             </div>
-                            //ao clicar abrir modal para enviar formulário de contato
-                            <Button className="hover:bg-white bg-slate-800 hover:text-slate-900 border-[1px] text-white hover:border-slate-900 p-2">
-                                <FaPaperPlane />
-                                Enviar Mensagem
-                            </Button>
+                            <ButtonFormulario />
+
                             </nav>
                         
                         </NavigationMenuContent>
