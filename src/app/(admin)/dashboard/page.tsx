@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { auth as authOptions } from "@/lib/auth-config";
+import { redirect } from 'next/navigation'
 
 interface User {
   name: string | null
@@ -9,13 +10,17 @@ interface User {
 }
 
 interface Session {
-  user?: User;
+  user?: User | null;
+  role?: string;
 }
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions) as Session;
 
-  
+  if (!session?.user || session.user.role !== 'admin') {
+    redirect('/')
+    return;
+  }
   
   return (
     <div>

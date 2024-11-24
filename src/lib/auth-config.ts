@@ -56,23 +56,24 @@ export const auth: NextAuthOptions = {
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+    maxAge:  2 * 60 * 60, // I intended this cookie to have a 4 hour expiration, but it has a 14.4 seconds expiration instead!
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.role = user.role || "user";
-        token.codigoJWT = user.codigoJWT || "n foi<><><><";
+        token.codigoJWT = user.codigoJWT || "";
       }
       return token;
     },
     async session({ session, token }) {
-      if (token?.role) {
+      if (token.role) {
         session.user.role = token.role;
         session.user.codigoJWT = token.codigoJWT;
       }
       return session;
     },
-  },
-  session: {
-    maxAge:  2 * 60 * 60, // I intended this cookie to have a 4 hour expiration, but it has a 14.4 seconds expiration instead!
   },
 };

@@ -9,6 +9,7 @@ import {
 
 import { FaUserCircle, FaUserAlt, FaSignInAlt, FaStore, FaUserPlus, FaHeart, FaLaptop } from "react-icons/fa"; 
 import Link from "next/link";
+import { LogoutButton } from "@/app/(pages)/login/components/LogoutButton";
 
 interface MenuContaProps {
     isLoggedIn: boolean;
@@ -48,6 +49,7 @@ export default function MenuConta({isLoggedIn}: MenuContaProps) {
                                             <FaStore size={24} className="text-slate-500" />
                                             Rastrear Pedido
                                         </Link>
+                                        <LogoutButton />
                                     </div>
                                 </div>
                             </nav>

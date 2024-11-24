@@ -13,10 +13,16 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export function ConfirmDeleteUser({ id, token, onDelete }) {
+interface ConfirmDeleteUserProps {
+    id: number;
+    token: string;
+    onDelete: (id: number) => void;
+}
+
+export function ConfirmDeleteUser({ id, token, onDelete }: ConfirmDeleteUserProps) {
     const [loading, setLoading] = useState(false);
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id: string) => {
         setLoading(true);
         try {
             const response = await fetch(`http://localhost:3001/deletar-usuario`, {
@@ -35,13 +41,12 @@ export function ConfirmDeleteUser({ id, token, onDelete }) {
                     duration: 3000,
                 });
 
-                onDelete(id);
+                onDelete(Number(id));
             } else {
                 throw new Error(data.message || 'Algo deu errado ao tentar excluir o usuário');
             }
         } catch (error) {
-            console.error('Erro ao excluir usuário:', error);
-            toast.error(`Erro: ${error.message}`, {
+            toast.error(`Erro: ${(error as Error).message}`, {
                 duration: 3000,
             });
         } finally {
@@ -70,7 +75,7 @@ export function ConfirmDeleteUser({ id, token, onDelete }) {
                         <AlertDialogCancel>Cancelar</AlertDialogCancel>
                         <AlertDialogAction
                             className="bg-red-600 text-white hover:bg-red-700 focus:ring-2 focus:ring-red-400"
-                            onClick={() => handleDelete(id)}
+                            onClick={() => handleDelete(id.toString())}
                             disabled={loading}
                         >
                             Continuar

@@ -20,28 +20,28 @@ export default function Sidebar() {
                 </Link>
             </li>
             <li>
-                <Link href="/usuarios">
+                <Link href="/dashboard/usuarios">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                         <FaUserCircle size={24}/> Usuários
                     </div>
                 </Link>
             </li>
             <li>
-                <Link href="/Produtos">
+                <Link href="/dashboard/Produtos">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                         <FaBoxOpen size={24}/> Produtos
                     </div>
                 </Link>
             </li>
             <li>
-                <Link href="/Vendas">
+                <Link href="/dashboard/Vendas">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                         <FaStore size={24}/> Vendas
                     </div>
                 </Link>
             </li>
             <li>
-                <Link href="/Contatos">
+                <Link href="/dashboard/Contatos">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                         <FaEnvelope size={24}/> Contatos
                     </div>

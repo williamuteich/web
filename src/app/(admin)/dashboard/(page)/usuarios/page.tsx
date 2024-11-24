@@ -2,11 +2,9 @@ import { getServerSession } from "next-auth";
 import { auth as authOptions } from "@/lib/auth-config";
 import { TodosUsuarios } from "./components/listarUsuarios";
 
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default async function Usuarios() {
   const session = await getServerSession(authOptions);
@@ -33,7 +31,7 @@ export default async function Usuarios() {
             className="mt-1 block w-full border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <Button>Adicionar Usuário</Button>
+
       </div>
       <TodosUsuarios token={token} />
     </div>

@@ -78,7 +78,7 @@ export default function EditUser({ user, token }: EditUserProps) {
 
             if (response.ok) {
                 console.log(result)
-                //location.reload();
+                location.reload();
             } else {
                 console.error("Erro ao atualizar o usuário:", result);
             }
