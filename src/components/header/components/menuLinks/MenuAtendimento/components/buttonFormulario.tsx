@@ -91,11 +91,12 @@ export default function ButtonFormulario() {
                 </DialogHeader>
                 <form onSubmit={handleSubmitForm} className="grid gap-4 py-4">
                     <Toaster />
-                    <div className="flex flex-col items-start gap-4">
+                    <div className="flex flex-col items-start gap-2">
                         <Label htmlFor="name" className="text-right">
                             Nome
                         </Label>
                         <Input
+                            placeholder="Seu nome"
                             name="nome"
                             autoComplete="off"
                             id="nome"
@@ -103,11 +104,12 @@ export default function ButtonFormulario() {
                         />
                     </div>
 
-                    <div className="flex flex-col items-start gap-4">
+                    <div className="flex flex-col items-start gap-2">
                         <Label htmlFor="email" className="text-right">
                             Email
                         </Label>
                         <Input
+                            placeholder="Seu email"
                             name="email"
                             autoComplete="off"
                             id="email"
@@ -116,11 +118,12 @@ export default function ButtonFormulario() {
                         />
                     </div>
 
-                    <div className="flex flex-col items-start gap-4">
+                    <div className="flex flex-col items-start gap-2">
                         <Label htmlFor="pedido" className="text-right">
                             Número do Pedido
                         </Label>
                         <Input
+                            placeholder="123487856"
                             name="pedido"
                             autoComplete="off"
                             id="pedido"
@@ -128,11 +131,12 @@ export default function ButtonFormulario() {
                         />
                     </div>
 
-                    <div className="flex flex-col items-start gap-4">
+                    <div className="flex flex-col items-start gap-2">
                         <Label htmlFor="messagem" className="text-right">
                             Mensagem
                         </Label>
                         <Textarea
+                            placeholder="Digite sua mensagem aqui"
                             name="messagem"
                             autoComplete="off"
                             id="messagem"
