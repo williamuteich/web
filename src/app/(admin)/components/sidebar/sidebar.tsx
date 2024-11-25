@@ -27,21 +27,21 @@ export default function Sidebar() {
                 </Link>
             </li>
             <li>
-                <Link href="/dashboard/Produtos">
+                <Link href="/dashboard/produtos">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                         <FaBoxOpen size={24}/> Produtos
                     </div>
                 </Link>
             </li>
             <li>
-                <Link href="/dashboard/Vendas">
+                <Link href="/dashboard/vendas">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                         <FaStore size={24}/> Vendas
                     </div>
                 </Link>
             </li>
             <li>
-                <Link href="/dashboard/Contatos">
+                <Link href="/dashboard/contatos">
                     <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                         <FaEnvelope size={24}/> Contatos
                     </div>

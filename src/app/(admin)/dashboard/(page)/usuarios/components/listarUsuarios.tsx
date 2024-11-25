@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { ConfirmDeleteUser } from "./deleteUser";
 import EditUser from "./editUser";
-import { DadosUsuario } from "../../../../../../types/typeUserSession";
+import { DadosUsuario } from "../../../../../../../types/typeUserSession";
 
 export function TodosUsuarios({ token }: { token: string }) {
     const [users, setUsers] = useState<DadosUsuario[]>([]);
@@ -36,9 +36,8 @@ export function TodosUsuarios({ token }: { token: string }) {
         if (token) {
             fetchUsers();
         }
-    }, [token]);
+    }, [users, token]);
 
-    console.log(users);
 
     const updateUsersAfterDelete = (deletedUserId: number) => {
         setUsers((prevUsers) => prevUsers.filter(user => user.id !== deletedUserId));
