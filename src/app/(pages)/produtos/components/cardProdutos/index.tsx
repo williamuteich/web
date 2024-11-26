@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaMinus, FaPlus, FaShoppingCart } from 'react-icons/fa'; // Ícones
+import { FaShoppingBag, FaStar } from 'react-icons/fa';
 
 const produtos = [
   {
@@ -79,62 +79,66 @@ const produtos = [
 export default function CardProdutos() {
   return (
     <div className="p-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {produtos.map((produto) => (
-          <div key={produto.id} className="bg-white border border-gray-200 rounded-xl shadow-md p-4 flex flex-col items-center">
-            {/* Link diretamente sem a tag <a> */}
+          <div key={produto.id} className="bg-white border border-gray-200 rounded-xl shadow-md p-2 flex flex-col justify-between items-center">
+            {/* Link agora envolve todo o produto */}
             <Link href={`/produtos/${produto.titulo}`} className="group w-full">
+              {/* Imagem do produto */}
               <img
                 src={produto.imagem}
                 alt={produto.titulo}
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
-              
-              {/* Aplica a cor azul no hover sobre o link */}
-              <h3 className="text-xl font-semibold text-center text-gray-800 mb-3 group-hover:text-blue-500 transition-colors">
+
+              {/* Nome do produto */}
+              <div className="product-name text-center text-xl font-semibold text-blue-600 mb-3 group-hover:text-blue-700 transition-colors">
                 {produto.titulo}
-              </h3>
-              
-              <p className="text-sm text-gray-500 text-center mb-2">
-                {produto.descricao}
-              </p>
+              </div>
 
-              <p className="text-lg text-center font-semibold text-gray-800 mb-1">
-                {produto.preco} <span className="text-sm text-center text-gray-400">no PIX</span>
-              </p>
+              {/* Avaliação de estrelas */}
+              <div className="list-star flex justify-center mb-3 mt-4">
+                {[...Array(5)].map((_, index) => (
+                  <FaStar key={index} className="text-yellow-500 w-4 h-4 mr-1" />
+                ))}
+              </div>
 
-              <p className="text-sm text-center text-gray-400 line-through mb-2">
-                {produto.precoAnterior}
-              </p>
-              
-              <p className="text-sm text-gray-800 mb-4 text-center">
-                ou até 2x de <b>R$ {produto.precoParcelado}</b> SEM JUROS
-              </p>
+              {/* Preço com desconto e preço anterior */}
+              <div className="box-price w-full mb-3">
+                <div className="price text-center">
+                  <div className="product-price">
+                    <div className="price-before">
+                      <span className="line-price text-sm text-gray-400 line-through">De: {produto.precoAnterior}</span>
+                    </div>
+                    <div className="price-off">
+                      <span className="por text-base text-blue-500 font-semibold">Por</span>
+                      <span className="text-xl font-bold text-blue-500"> {produto.preco}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Parcelamento */}
+                <div className="product-payment text-center mt-2">
+                  <span className="txt-corparcelas text-sm">
+                    ou até
+                    <strong className="color text-sm text-blue-500"> 2x</strong>
+                    <span className="preco-de"> de </span>
+                    <strong className="preco-parc2 text-sm text-blue-500">R$ {produto.precoParcelado}</strong>
+                    <span className="operadora text-sm"> Sem juros</span>
+                  </span>
+                </div>
+              </div>
             </Link>
-            <div className="w-full border-t border-gray-200 pt-3 mt-4">
-              <div className="flex items-center justify-between w-full border border-gray-200 rounded-lg p-2">
-                <button 
-                  className="flex items-center justify-center p-2"
-                  aria-label="Diminuir quantidade"
-                >
-                  <FaMinus size={18} className="text-blue-900" />
-                </button>
-                
-                <button 
-                  className="flex items-center justify-center px-4 border-x border-gray-400"
-                  aria-label="Ver carrinho"
-                >
-                  <FaShoppingCart size={18} className="text-blue-900" />
-                </button>
-                
-                <button 
-                  className="flex items-center justify-center p-2"
-                  aria-label="Aumentar quantidade"
-                >
-                  <FaPlus size={18} className="text-blue-900" />
+
+            {/* Botão de compra  */}
+            <Link href={`/produtos/${produto.titulo}`} className="w-full bg-gradient-to-r from-green-400 to-green-500 rounded-sm hover:from-green-500 hover:to-green-700 transition-all duration-300">
+              <div className="w-full flex items-center justify-center p-1">
+                <button className="flex items-center justify-center w-full h-full bg-transparent text-white font-semibold py-2 rounded-sm transition-colors duration-300">
+                  <FaShoppingBag className="mr-2" />
+                  Comprar
                 </button>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>
