@@ -83,7 +83,7 @@ export default function CardProdutos() {
         {produtos.map((produto) => (
           <div key={produto.id} className="bg-white border border-gray-200 rounded-xl shadow-md p-2 flex flex-col justify-between items-center">
             {/* Link agora envolve todo o produto */}
-            <Link href={`/produtos/${produto.titulo}`} className="group w-full">
+            <Link href={`/produtos/${produto.titulo}`} className="group w-full hover:scale-[1.02] transition-all">
               {/* Imagem do produto */}
               <img
                 src={produto.imagem}

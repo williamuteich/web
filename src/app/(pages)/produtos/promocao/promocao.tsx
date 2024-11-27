@@ -11,6 +11,7 @@ import { Container } from "@/components/container";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { FaStar } from 'react-icons/fa';
+import Link from "next/link";
 
 const produtos = [
     {
@@ -97,8 +98,9 @@ export function Promocao() {
                                 {produtos.map((produto) => (
                                     <CarouselItem key={produto.id} className="md:basis-1/2 lg:basis-1/3">
                                         <div className="p-1">
-                                            <Card className="h-[400px]">
-                                                <CardContent className="flex aspect-square items-center justify-center p-0">
+                                            <Card className="min-h-[370px]">
+                                                <CardContent className="flex aspect-square items-center hover:scale-[1.02] transition-all justify-center px-1 py-1">
+                                                    <Link href={`/produtos/${produto.titulo}`} >
                                                     <div className="w-full h-full flex flex-col items-center">
                                                         {/* Imagem do Produto */}
                                                         <Image
@@ -106,10 +108,10 @@ export function Promocao() {
                                                             alt={produto.titulo}
                                                             width={400}
                                                             height={400}
-                                                            className="object-cover w-full h-full mb-2 rounded-lg"
+                                                            className="object-cover w-full h-full mb-2 "
                                                         />
                                                         {/* Título do Produto */}
-                                                        <div className="text-center text-sm  mb-1">
+                                                        <div className="text-center leading-5 text-base mb-1">
                                                             {produto.titulo}
                                                         </div>
 
@@ -121,8 +123,8 @@ export function Promocao() {
 
                                                         <div className="product-price">
                                                             {produto.precoAnterior ? (
-                                                                <div className="price-before">
-                                                                    <span className="line-price text-sm text-gray-400 line-through">
+                                                                <div className="price-before text-center">
+                                                                    <span className="line-price text-sm text-gray-600 line-through">
                                                                         De: {produto.precoAnterior}
                                                                     </span>
                                                                 </div>
@@ -150,6 +152,7 @@ export function Promocao() {
                                                         </div>
 
                                                     </div>
+                                                    </Link>
                                                 </CardContent>
                                             </Card>
                                         </div>
