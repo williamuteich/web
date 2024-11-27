@@ -74,7 +74,7 @@ export function Promocao() {
     return (
         <div className="h-[650px] w-full p-6 bg-gradient-to-r from-black 15% via-blue-700 to-black [background-size:400%_100%] flex justify-center items-center">
             <Container>
-                <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center">
+                <div className="flex flex-col md:flex-row gap-4 lg:gap-24 items-center">
                     <div className="w-full sm:w-[40%] lg:w-[25%] xl:w-[20%] text-center md:text-left">
                         <div className="flex flex-col gap-6">
                             <h1 className="text-green-400 text-4xl font-bold uppercase">Promoções</h1>
