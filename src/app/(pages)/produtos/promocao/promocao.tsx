@@ -70,13 +70,12 @@ const produtos = [
     },
 ];
 
-
 export function Promocao() {
     return (
-        <div className=" h-[550px] bg-gradient-to-r from-black 15% via-blue-700 to-black [background-size:400%_100%] flex justify-center items-center">
+        <div className="h-[650px] w-full p-6 bg-gradient-to-r from-black 15% via-blue-700 to-black [background-size:400%_100%] flex justify-center items-center">
             <Container>
-                <div className="flex gap-24 items-center">
-                    <div>
+                <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center">
+                    <div className="w-full sm:w-[40%] lg:w-[25%] xl:w-[20%] text-center md:text-left">
                         <div className="flex flex-col gap-6">
                             <h1 className="text-green-400 text-4xl font-bold uppercase">Promoções</h1>
                             <p className="uppercase text-white text-sm">
@@ -87,7 +86,7 @@ export function Promocao() {
                             </Button>
                         </div>
                     </div>
-                    <div className="w-full">
+                    <div className="w-[220px] sm:w-[60%] lg:w-[70%] xl:w-[75%]">
                         <Carousel
                             opts={{
                                 align: "start",
@@ -96,62 +95,61 @@ export function Promocao() {
                         >
                             <CarouselContent>
                                 {produtos.map((produto) => (
-                                    <CarouselItem key={produto.id} className="md:basis-1/2 lg:basis-1/3">
+                                    <CarouselItem key={produto.id} className="sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/3 p-2">
                                         <div className="p-1">
-                                            <Card className="min-h-[370px]">
-                                                <CardContent className="flex aspect-square items-center hover:scale-[1.02] transition-all justify-center px-1 py-1">
-                                                    <Link href={`/produtos/${produto.titulo}`} >
-                                                    <div className="w-full h-full flex flex-col items-center">
-                                                        {/* Imagem do Produto */}
-                                                        <Image
-                                                            src={produto.imagem}
-                                                            alt={produto.titulo}
-                                                            width={400}
-                                                            height={400}
-                                                            className="object-cover w-full h-full mb-2 "
-                                                        />
-                                                        {/* Título do Produto */}
-                                                        <div className="text-center leading-5 text-base mb-1">
-                                                            {produto.titulo}
-                                                        </div>
+                                            <Card className=" h-[400px] sm:h-[370px]">
+                                                <CardContent className="flex aspect-square hover:scale-[1.02] transition-all justify-center px-1 py-1">
+                                                    <Link href={`/produtos/${produto.titulo}`}>
+                                                        <div className="w-full h-full flex flex-col items-center">
+                                                            {/* Imagem do Produto */}
+                                                            <Image
+                                                                src={produto.imagem}
+                                                                alt={produto.titulo}
+                                                                width={400}
+                                                                height={400}
+                                                                className="object-cover w-full h-[200px] mb-2 rounded-lg"
+                                                            />
+                                                            {/* Título do Produto */}
+                                                            <div className="text-center leading-5 text-base mb-1">
+                                                                {produto.titulo}
+                                                            </div>
 
-                                                        <div className="list-star flex justify-center mb-3 mt-1">
-                                                            {[...Array(5)].map((_, index) => (
-                                                                <FaStar key={index} className="text-yellow-500 w-4 h-4 mr-1" />
-                                                            ))}
-                                                        </div>
+                                                            <div className="list-star flex justify-center mb-3 mt-1">
+                                                                {[...Array(5)].map((_, index) => (
+                                                                    <FaStar key={index} className="text-yellow-500 w-4 h-4 mr-1" />
+                                                                ))}
+                                                            </div>
 
-                                                        <div className="product-price">
-                                                            {produto.precoAnterior ? (
-                                                                <div className="price-before text-center">
-                                                                    <span className="line-price text-sm text-gray-600 line-through">
-                                                                        De: {produto.precoAnterior}
-                                                                    </span>
+                                                            <div className="product-price">
+                                                                {produto.precoAnterior ? (
+                                                                    <div className="price-before text-center">
+                                                                        <span className="line-price text-sm text-gray-600 line-through">
+                                                                            De: {produto.precoAnterior}
+                                                                        </span>
+                                                                    </div>
+                                                                ) : null}
+                                                                <div className="price-off">
+                                                                    <span className="por text-base text-blue-500 font-semibold">Por</span>
+                                                                    <span className="text-xl font-bold text-blue-500"> {produto.preco}</span>
                                                                 </div>
-                                                            ) : null}
-                                                            <div className="price-off">
-                                                                <span className="por text-base text-blue-500 font-semibold">Por</span>
-                                                                <span className="text-xl font-bold text-blue-500"> {produto.preco}</span>
+                                                            </div>
+
+                                                            <div className="product-payment text-center mt-2">
+                                                                {produto.precoParcelado ? (
+                                                                    <span className="txt-corparcelas text-sm">
+                                                                        ou até
+                                                                        <strong className="color text-sm text-blue-500"> 2x</strong>
+                                                                        <span className="preco-de"> de </span>
+                                                                        <strong className="preco-parc2 text-sm text-blue-500">R$ {produto.precoParcelado}</strong>
+                                                                        <span className="operadora text-sm"> Sem juros</span>
+                                                                    </span>
+                                                                ) : (
+                                                                    <span className="txt-corparcelas text-sm">
+                                                                        Pagamento à vista
+                                                                    </span>
+                                                                )}
                                                             </div>
                                                         </div>
-
-                                                        <div className="product-payment text-center mt-2">
-                                                            {produto.precoParcelado ? (
-                                                                <span className="txt-corparcelas text-sm">
-                                                                    ou até
-                                                                    <strong className="color text-sm text-blue-500"> 2x</strong>
-                                                                    <span className="preco-de"> de </span>
-                                                                    <strong className="preco-parc2 text-sm text-blue-500">R$ {produto.precoParcelado}</strong>
-                                                                    <span className="operadora text-sm"> Sem juros</span>
-                                                                </span>
-                                                            ) : (
-                                                                <span className="txt-corparcelas text-sm">
-                                                                    Pagamento à vista
-                                                                </span>
-                                                            )}
-                                                        </div>
-
-                                                    </div>
                                                     </Link>
                                                 </CardContent>
                                             </Card>

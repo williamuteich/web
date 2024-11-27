@@ -79,7 +79,7 @@ const produtos = [
 export default function CardProdutos() {
   return (
     <div className="p-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 ">
         {produtos.map((produto) => (
           <div key={produto.id} className="bg-white border border-gray-200 rounded-xl shadow-md p-2 flex flex-col justify-between items-center">
             {/* Link agora envolve todo o produto */}
