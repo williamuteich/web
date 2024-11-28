@@ -34,7 +34,7 @@ const produtos = [
     },
     {
         id: 3,
-        titulo: "Relógio Casio Vintage preto e branco e vermelho",
+        titulo: "Relógio Casio Vintage preto ",
         imagem: "/produto2.jpg",
         descricao: "Com 10% de desconto",
         preco: "R$ 200,00",
@@ -72,13 +72,13 @@ const produtos = [
 
 export function Promocao() {
     return (
-        <div className="h-[650px] w-full p-6 bg-gradient-to-r from-black 15% via-blue-700 to-black [background-size:400%_100%] flex justify-center items-center">
+        <div className=" py-10 w-full bg-gradient-to-r from-black 15% via-blue-700 to-black [background-size:400%_100%] flex justify-center items-center">
             <Container>
-                <div className="flex flex-col md:flex-row gap-4 lg:gap-24 items-center">
+                <div className="flex flex-col lg:flex-row gap-4 lg:gap-20 items-center">
                     <div className="w-full sm:w-[40%] lg:w-[25%] xl:w-[20%] text-center md:text-left">
-                        <div className="flex flex-col gap-6">
-                            <h1 className="text-green-400 text-4xl font-bold uppercase">Promoções</h1>
-                            <p className="uppercase text-white text-sm">
+                        <div className="flex flex-col gap-4 mb-4 lg:mb-0 lg:gap-6">
+                            <h1 className="text-green-400 text-4xl font-bold uppercase text-center lg:text-start">Promoções</h1>
+                            <p className="uppercase text-white text-sm text-center lg:text-start">
                                 Descontos imperdíveis em diversos produtos + Frete grátis em compras selecionadas!
                             </p>
                             <Button className="uppercase text-white bg-green-400">
@@ -86,21 +86,21 @@ export function Promocao() {
                             </Button>
                         </div>
                     </div>
-                    <div className="w-[220px] sm:w-[60%] lg:w-[70%] xl:w-[75%]">
+                    <div className="w-[75%] sm:w-[90%] md:w-[90%] lg:w-[63%] xl:w-[70%]">
                         <Carousel
                             opts={{
                                 align: "start",
                             }}
                             className="w-full"
                         >
-                            <CarouselContent>
+                            <CarouselContent className="p-2">
                                 {produtos.map((produto) => (
-                                    <CarouselItem key={produto.id} className="sm:basis-1/2 md:basis-1/3 lg:basis-1/3 xl:basis-1/3 p-2">
-                                        <div className="p-1">
-                                            <Card className=" h-[400px] sm:h-[370px]">
-                                                <CardContent className="flex aspect-square hover:scale-[1.02] transition-all justify-center px-1 py-1">
-                                                    <Link href={`/produtos/${produto.titulo}`}>
-                                                        <div className="w-full h-full flex flex-col items-center">
+                                    <CarouselItem key={produto.id} className="sm:basis-1/3 md:basis-1/3 lg:basis-1/3 xl:basis-1/3">
+                                        <div className="p-0">
+                                            <Card className="border-0 p-1 pb-6">
+                                                <CardContent className="flex aspect-square p-0 hover:scale-[1.02] transition-all justify-center">
+                                                    <Link href={`/produtos/${produto.titulo}`} className="w-full h-fit">
+                                                        <div className="w-full max-h-full flex flex-col items-center">
                                                             {/* Imagem do Produto */}
                                                             <Image
                                                                 src={produto.imagem}
