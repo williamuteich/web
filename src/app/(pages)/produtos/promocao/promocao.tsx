@@ -81,7 +81,7 @@ export function Promocao() {
                             <p className="uppercase text-white text-sm text-center lg:text-start">
                                 Descontos imperdíveis em diversos produtos + Frete grátis em compras selecionadas!
                             </p>
-                            <Button className="uppercase text-white bg-green-400">
+                            <Button className="uppercase text-white bg-green-400 hover:bg-white hover:text-slate-900 focus:bg-white focus:text-slate-900">
                                 Aproveite já!
                             </Button>
                         </div>
