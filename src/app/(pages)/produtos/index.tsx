@@ -1,8 +1,7 @@
 
-import Destaques from "./destaques";
-import { Categorias } from "./categorias";
 import { Container } from "@/components/container";
-import { Promocao } from "./promocao/promocao";
+import Destaques from "@/components/home/produtos/destaques";
+import { Promocao } from "@/components/home/produtos/promocao/promocao";
 
 export default function Produtos() {
     return (
