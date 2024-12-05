@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { LogoutButton } from "@/app/(pages)/login/components/LogoutButton";
+import ButtonFormulario from "../buttonFormulario";
 
 
 const linkMenu = [
@@ -130,6 +131,7 @@ export default async function MenuMobile() {
                                         </Link>
                                     </li>
                                 ))}
+                                <ButtonFormulario />
                             </ul>
                         </nav>
                     </SheetHeader>

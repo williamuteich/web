@@ -9,7 +9,7 @@ import {
 
 import { FaHeadset, FaWhatsapp, FaEnvelope } from "react-icons/fa"; 
 import Link from "next/link";
-import ButtonFormulario from "./components/buttonFormulario";
+import ButtonFormulario from "../../buttonFormulario";
 
 export default function MenuAtendimento() {
     return (

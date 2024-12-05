@@ -29,11 +29,9 @@ export function LogoutMenu() {
     return (
         <button
             onClick={() => signOut()}
-            className="flex gap-2 items-center p-2 text-slate-800 hover:text-white"
+            className="flex p-2 pt-[5px] pb-[5px] text-slate-800 text-base items-center gap-2 hover:bg-slate-300 rounded-md"
         >
-            <FaSignOutAlt size={38}/> Sair
+            <FaSignOutAlt size={24} className="text-slate-500"/> Sair
         </button>
     )
 }
-
-{/*className=""*/}

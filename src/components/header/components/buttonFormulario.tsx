@@ -17,7 +17,7 @@ import { FaPaperPlane } from "react-icons/fa";
 import { Toaster, toast } from 'react-hot-toast';
 
 export default function ButtonFormulario() {
-    const [open, setOpen] = useState(false); // Estado para controlar o modal
+    const [open, setOpen] = useState(false);
 
     async function handleSubmitForm(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -77,7 +77,7 @@ export default function ButtonFormulario() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="hover:bg-white bg-slate-800 hover:text-slate-900 border-[1px] text-white hover:border-slate-900 ">
+                <Button className="w-full mt-4 text-slate-800 md:mt-0 hover:bg-white bg-white md:bg-slate-800 hover:text-slate-900 border-[1px] md:text-white hover:border-slate-900 ">
                     <FaPaperPlane />
                     Enviar Mensagem
                 </Button>
