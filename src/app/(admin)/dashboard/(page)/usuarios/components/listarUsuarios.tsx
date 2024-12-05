@@ -8,7 +8,8 @@ import EditUser from "./editUser";
 import { DadosUsuario } from "../../../../../../../types/typeUserSession";
 
 export function TodosUsuarios({ token }: { token: string }) {
-    const [users, setUsers] = useState<DadosUsuario[]>([]);
+    const [users, setUsers] = useState<DadosUsuario[]>([]); // Todos os usuários
+    const [searchQuery, setSearchQuery] = useState<string>(''); // Para armazenar a consulta de pesquisa
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -27,7 +28,7 @@ export function TodosUsuarios({ token }: { token: string }) {
                 }
 
                 const data = await response.json();
-                setUsers(data.users);
+                setUsers(data.users); // Atualiza o estado com todos os usuários
             } catch (err) {
                 setError("Erro ao carregar os usuários. Tente novamente.");
             } finally {
@@ -38,12 +39,23 @@ export function TodosUsuarios({ token }: { token: string }) {
         if (token) {
             fetchUsers();
         }
-    }, [users, token]);
+    }, [token]);
 
-
+    // Função para atualizar a lista de usuários após a exclusão
     const updateUsersAfterDelete = (deletedUserId: number) => {
         setUsers((prevUsers) => prevUsers.filter(user => user.id !== deletedUserId));
     };
+
+    // Função para lidar com mudanças na pesquisa
+    const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const query = event.target.value.trim().toLowerCase();
+        setSearchQuery(query);
+    };
+
+    // Filtro dos usuários com base no nome ou email
+    const filteredUsers = users.filter(user =>
+        user.name.toLowerCase().includes(searchQuery) || user.email.toLowerCase().includes(searchQuery)
+    );
 
     if (loading) {
         return <div>Carregando...</div>;
@@ -65,11 +77,12 @@ export function TodosUsuarios({ token }: { token: string }) {
                         id="endereco"
                         name="endereco"
                         type="text"
+                        value={searchQuery}
+                        onChange={handleFilterChange}
                         placeholder="Procurar"
                         className="mt-1 block w-full border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-
             </div>
             <div className="overflow-x-auto w-full bg-white shadow-md rounded-lg">
                 <table className="min-w-full table-auto">
@@ -83,21 +96,26 @@ export function TodosUsuarios({ token }: { token: string }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user) => (
-                            <tr key={user.id} className="border-b border-gray-200 hover:bg-gray-50">
-                                <td className="px-4 py-3">{user.id}</td>
-                                <td className="px-4 py-3">{user.name}</td>
-                                <td className="px-4 py-3">{user.email}</td>
-                                <td className="px-4 py-3">{user.permissao?.nome || 'Default'}</td>
-                                <td className="px-4 py-3 text-end">
-
-                                    <div className="flex justify-end">
-                                        <EditUser user={user} token={token} />
-                                        <ConfirmDeleteUser id={user.id} token={token} onDelete={updateUsersAfterDelete} />
-                                    </div>
-                                </td>
+                        {filteredUsers.length === 0 ? (
+                            <tr>
+                                <td colSpan={5} className="px-4 py-3 text-center">Nenhum usuário encontrado</td>
                             </tr>
-                        ))}
+                        ) : (
+                            filteredUsers.map((user) => (
+                                <tr key={user.id} className="border-b border-gray-200 hover:bg-gray-50">
+                                    <td className="px-4 py-3">{user.id}</td>
+                                    <td className="px-4 py-3">{user.name}</td>
+                                    <td className="px-4 py-3">{user.email}</td>
+                                    <td className="px-4 py-3">{user.permissao?.nome || 'Default'}</td>
+                                    <td className="px-4 py-3 text-end">
+                                        <div className="flex justify-end">
+                                            <EditUser user={user} token={token} />
+                                            <ConfirmDeleteUser id={user.id} token={token} onDelete={updateUsersAfterDelete} />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
                     </tbody>
                 </table>
             </div>
