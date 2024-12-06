@@ -8,8 +8,8 @@ import EditUser from "./editUser";
 import { DadosUsuario } from "../../../../../../../types/typeUserSession";
 
 export function TodosUsuarios({ token }: { token: string }) {
-    const [users, setUsers] = useState<DadosUsuario[]>([]); // Todos os usuários
-    const [searchQuery, setSearchQuery] = useState<string>(''); // Para armazenar a consulta de pesquisa
+    const [users, setUsers] = useState<DadosUsuario[]>([]); 
+    const [searchQuery, setSearchQuery] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -28,7 +28,7 @@ export function TodosUsuarios({ token }: { token: string }) {
                 }
 
                 const data = await response.json();
-                setUsers(data.users); // Atualiza o estado com todos os usuários
+                setUsers(data.users); 
             } catch (err) {
                 setError("Erro ao carregar os usuários. Tente novamente.");
             } finally {
@@ -41,18 +41,15 @@ export function TodosUsuarios({ token }: { token: string }) {
         }
     }, [token]);
 
-    // Função para atualizar a lista de usuários após a exclusão
     const updateUsersAfterDelete = (deletedUserId: number) => {
         setUsers((prevUsers) => prevUsers.filter(user => user.id !== deletedUserId));
     };
 
-    // Função para lidar com mudanças na pesquisa
     const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const query = event.target.value.trim().toLowerCase();
         setSearchQuery(query);
     };
 
-    // Filtro dos usuários com base no nome ou email
     const filteredUsers = users.filter(user =>
         user.name.toLowerCase().includes(searchQuery) || user.email.toLowerCase().includes(searchQuery)
     );
