@@ -13,7 +13,7 @@ export default async function Contatos() {
     const token = session.user.codigoJWT;
 
     return (
-        <div className="w-full px-4 py-6">
+        <div className="w-full px-4 py-4">
             <ListarFormularios token={token} />
         </div>
     );

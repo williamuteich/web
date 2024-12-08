@@ -23,7 +23,7 @@ export default async function Dashboard() {
   }
   
   return (
-    <div>
+    <div className="w-full px-4 py-4">
       <h1 className="text-2xl font-bold">Bem-vindo ao Dashboard, {session?.user?.name || null}!</h1>
       
       <div className="mt-6 p-4 bg-white rounded-lg shadow-md">

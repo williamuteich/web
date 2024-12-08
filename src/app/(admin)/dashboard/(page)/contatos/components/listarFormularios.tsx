@@ -11,15 +11,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination";
+
 import Paginacao from "../../components/paginacao";
 
 export function ListarFormularios({ token }: { token: string }) {
@@ -104,18 +96,12 @@ export function ListarFormularios({ token }: { token: string }) {
 
     const indexOfLastUser = currentPage * itemsPerPage;
     const indexOfFirstUser = indexOfLastUser - itemsPerPage;
-    const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser); // Filtra os usuários da página atual
+    const currentUsers = searchQuery.length > 0 ? filteredUsers : filteredUsers.slice(indexOfFirstUser, indexOfLastUser);   
 
-    const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
-
-    const handleNextPage = () => {
-        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-    };
-
-    const handlePreviousPage = () => {
-        if (currentPage > 1) setCurrentPage(currentPage - 1);
-    };
-
+    const totalPages = searchQuery.length > 0
+        ? Math.ceil(filteredUsers.length / itemsPerPage) 
+        : Math.ceil(filteredUsers.length / itemsPerPage);
+    
     if (loading) {
         return <div>Carregando...</div>;
     }
@@ -212,8 +198,6 @@ export function ListarFormularios({ token }: { token: string }) {
             <Paginacao
                 currentPage={currentPage}
                 totalPages={totalPages}
-                handleNextPage={handleNextPage}
-                handlePreviousPage={handlePreviousPage}
                 setCurrentPage={setCurrentPage}
             />
         </>

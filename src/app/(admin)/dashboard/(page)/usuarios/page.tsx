@@ -12,7 +12,7 @@ export default async function Usuarios() {
   const token = session.user.codigoJWT;
 
   return (
-    <div className="w-full px-4 py-6">
+    <div className="w-full px-4 py-4">
       <TodosUsuarios token={token} />
     </div>
   );

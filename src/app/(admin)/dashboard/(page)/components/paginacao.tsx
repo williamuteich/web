@@ -1,6 +1,15 @@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext } from "@/components/ui/pagination";
 
-export default function Paginacao({ currentPage, totalPages, handleNextPage, handlePreviousPage, setCurrentPage }: any) {
+export default function Paginacao({ currentPage, totalPages, setCurrentPage }: any) {
+    
+    const handleNextPage = () => {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+    
     return (
         <Pagination className="mt-10">
             <PaginationContent>
