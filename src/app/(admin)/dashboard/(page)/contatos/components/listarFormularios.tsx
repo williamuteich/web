@@ -1,18 +1,13 @@
-"use client";
+"use client"
+
+import { useState, useEffect } from "react";
+import { FaCheck } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
-import { useState, useEffect } from "react";
-import { FaCheck } from "react-icons/fa";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Paginacao from "../../components/paginacao";
+import RespostaEmail from "./respostaEmail";
 
 export function ListarFormularios({ token }: { token: string }) {
     const [users, setUsers] = useState<any[]>([]);
@@ -20,10 +15,10 @@ export function ListarFormularios({ token }: { token: string }) {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>("");
-
     const [statusFilter, setStatusFilter] = useState<string>("false");
-    const [currentPage, setCurrentPage] = useState<number>(1); 
-    const itemsPerPage = 10; 
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const itemsPerPage = 10;
+    const [selectedUser, setSelectedUser] = useState<any | null>(null);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -96,12 +91,16 @@ export function ListarFormularios({ token }: { token: string }) {
 
     const indexOfLastUser = currentPage * itemsPerPage;
     const indexOfFirstUser = indexOfLastUser - itemsPerPage;
-    const currentUsers = searchQuery.length > 0 ? filteredUsers : filteredUsers.slice(indexOfFirstUser, indexOfLastUser);   
+    const currentUsers = searchQuery.length > 0 ? filteredUsers : filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
     const totalPages = searchQuery.length > 0
-        ? Math.ceil(filteredUsers.length / itemsPerPage) 
+        ? Math.ceil(filteredUsers.length / itemsPerPage)
         : Math.ceil(filteredUsers.length / itemsPerPage);
-    
+
+    const handleReplyClick = (user: any) => {
+        setSelectedUser(user);
+    };
+
     if (loading) {
         return <div>Carregando...</div>;
     }
@@ -113,6 +112,7 @@ export function ListarFormularios({ token }: { token: string }) {
     return (
         <>
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Lista de Contatos</h2>
+
             <div className="flex justify-end items-end mb-6 gap-6">
                 <div>
                     <Label htmlFor="filtro" className="text-sm font-medium text-gray-700">
@@ -141,66 +141,71 @@ export function ListarFormularios({ token }: { token: string }) {
                 </div>
             </div>
 
-            <div className="overflow-x-auto w-full bg-white shadow-md rounded-lg">
-                <table className="min-w-full table-auto">
-                    <thead className="bg-gray-700 text-left text-sm font-medium text-white">
-                        <tr>
-                            <th className="px-4 py-2">#</th>
-                            <th className="px-4 py-2">Nome</th>
-                            <th className="px-4 py-2">Email</th>
-                            <th className="px-4 py-2">Nº Pedido</th>
-                            <th className="px-4 py-2">Mensagem</th>
-                            <th className="px-4 py-2">Status</th>
-                            <th className="px-4 py-2 text-center">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentUsers.length === 0 ? (
+            {selectedUser ? (
+                <RespostaEmail selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+            ) : (
+                <div className="overflow-x-auto w-full bg-white shadow-md rounded-lg">
+                    <table className="min-w-full table-auto">
+                        <thead className="bg-gray-700 text-left text-sm font-medium text-white">
                             <tr>
-                                <td colSpan={7} className="px-4 py-3 text-center">
-                                    Não é possível encontrar
-                                </td>
+                                <th className="px-4 py-2">#</th>
+                                <th className="px-4 py-2">Nome</th>
+                                <th className="px-4 py-2">Email</th>
+                                <th className="px-4 py-2">Nº Pedido</th>
+                                <th className="px-4 py-2">Mensagem</th>
+                                <th className="px-4 py-2">Status</th>
+                                <th className="px-4 py-2 text-center">Ações</th>
                             </tr>
-                        ) : (
-                            currentUsers.map((user) => (
-                                <tr key={user.id} className="border-b border-gray-200 hover:bg-gray-50">
-                                    <td className="px-4 py-3">{user.id}</td>
-                                    <td className="px-4 py-3">{user.nome}</td>
-                                    <td className="px-4 py-3">{user.email}</td>
-                                    <td className="px-4 py-3">{user.pedido}</td>
-                                    <td className="px-4 py-3 w-52 truncate" title={user.mensagem}>
-                                        {user.mensagem.length > 50
-                                            ? user.mensagem.slice(0, 50) + "..."
-                                            : user.mensagem}
-                                    </td>
-                                    <td className="px-4 py-3">
-                                        <span className="text-red-500">
-                                            {user.status ? (
-                                                <p className="text-green-600 flex items-center gap-1 font-medium">
-                                                    <FaCheck className="text-green-600" />
-                                                    Finalizado
-                                                </p>
-                                            ) : (
-                                                <p className="font-medium">Aberto</p>
-                                            )}
-                                        </span>
-                                    </td>
-                                    <td className="px-4 py-3 text-center">
-                                        {!user.status && <Button>Responder</Button>}
+                        </thead>
+                        <tbody>
+                            {currentUsers.length === 0 ? (
+                                <tr>
+                                    <td colSpan={7} className="px-4 py-3 text-center">
+                                        Não é possível encontrar
                                     </td>
                                 </tr>
-                            ))
-                        )}
-                    </tbody>
-                </table>
-            </div>
+                            ) : (
+                                currentUsers.map((user) => (
+                                    <tr key={user.id} className="border-b border-gray-200 hover:bg-gray-50">
+                                        <td className="px-4 py-3">{user.id}</td>
+                                        <td className="px-4 py-3">{user.nome}</td>
+                                        <td className="px-4 py-3">{user.email}</td>
+                                        <td className="px-4 py-3">{user.pedido}</td>
+                                        <td className="px-4 py-3 w-52 truncate" title={user.mensagem}>
+                                            {user.mensagem.length > 50
+                                                ? user.mensagem.slice(0, 50) + "..."
+                                                : user.mensagem}
+                                        </td>
+                                        <td className="px-4 py-3">
+                                            <span className="text-red-500">
+                                                {user.status ? (
+                                                    <p className="text-green-600 flex items-center gap-1 font-medium">
+                                                        <FaCheck className="text-green-600" />
+                                                        Finalizado
+                                                    </p>
+                                                ) : (
+                                                    <p className="font-medium">Aberto</p>
+                                                )}
+                                            </span>
+                                        </td>
+                                        <td className="px-4 py-3 text-center">
+                                            {!user.status && <Button onClick={() => handleReplyClick(user)}>Responder</Button>}
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            )}
 
-            <Paginacao
-                currentPage={currentPage}
-                totalPages={totalPages}
-                setCurrentPage={setCurrentPage}
-            />
+            {!selectedUser && (
+                <Paginacao
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    setCurrentPage={setCurrentPage}
+                />
+            )}
         </>
     );
 }
-
