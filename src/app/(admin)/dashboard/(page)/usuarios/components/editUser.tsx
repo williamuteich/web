@@ -62,8 +62,6 @@ export default function EditUser({ user, token }: EditUserProps) {
                 },
             };
 
-            console.log("Dados que estão sendo enviados para o backend:", JSON.stringify(data, null, 2));
-
             const response = await fetch("http://localhost:3001/atualizar-usuario", {
                 method: "PUT",
                 headers: {

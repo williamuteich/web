@@ -40,9 +40,9 @@ export default function Sidebar() {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/dashboard/Marca">
+                            <Link href="/dashboard/marcas">
                                 <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
-                                    <FaTag size={24} /> Marca
+                                    <FaTag size={24} /> marcas
                                 </div>
                             </Link>
                         </li>
