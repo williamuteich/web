@@ -142,7 +142,7 @@ export function ListarFormularios({ token }: { token: string }) {
             </div>
 
             {selectedUser ? (
-                <RespostaEmail selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+                <RespostaEmail selectedUser={selectedUser} setSelectedUser={setSelectedUser} token={token} />
             ) : (
                 <div className="overflow-x-auto w-full bg-white shadow-md rounded-lg">
                     <table className="min-w-full table-auto">

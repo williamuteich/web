@@ -17,9 +17,11 @@ interface User {
 interface RespostaEmailProps {
     selectedUser: User | null;
     setSelectedUser: (user: User | null) => void;
+    token: string;
 }
 
-export default function RespostaEmail({ selectedUser, setSelectedUser }: RespostaEmailProps) {
+export default function RespostaEmail({ selectedUser, setSelectedUser, token }: RespostaEmailProps) {
+   
     const [textMessage, setTextMessage] = useState<string>("");
 
     const handleSubmitResponse = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,12 +38,14 @@ export default function RespostaEmail({ selectedUser, setSelectedUser }: Respost
         });
     
         try {
-            const res = await fetch("/api/sendEmail", {
+            const res = await fetch("http://localhost:3001/sendEmail", {
                 method: "POST",
                 headers: {
+                    "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
+                    idUser: selectedUser?.id,
                     nameUser: selectedUser?.nome,
                     emailUser: selectedUser?.email,
                     message: textMessage,
@@ -50,6 +54,7 @@ export default function RespostaEmail({ selectedUser, setSelectedUser }: Respost
     
             if (res.ok) {
                 alert("Resposta enviada com sucesso!");
+                window.location.reload();
             } else {
                 alert("Erro ao enviar a resposta.");
             }
@@ -73,8 +78,9 @@ export default function RespostaEmail({ selectedUser, setSelectedUser }: Respost
             <div className="mb-10 mt-12 flex flex-col gap-1">
                 <p className="text-lg font-normal text-gray-600"><strong>Nome:</strong> <span className="text-blue-700 font-medium">{selectedUser?.nome}</span></p>
                 <p className="text-lg font-normal text-gray-700"><strong>Email:</strong> <span className="text-blue-700 font-medium">{selectedUser?.email}</span></p>
+                <p className="text-lg font-normal text-gray-700"><strong> Nº Pedido:</strong> <span className="text-blue-700 font-medium">{selectedUser?.pedido}</span></p>
 
-                <p className="text-lg font-normal text-gray-700"><strong>Mensagem:</strong></p>
+                <p className="text-lg font-normal mt-6 text-gray-700"><strong>Mensagem:</strong></p>
                 <div className="text-gray-800 italic p-4 py-3 border border-gray-200 bg-gray-50 rounded-lg shadow-sm">
                     <FiMessageCircle className="w-4 h-4 text-gray-500 inline-block mr-2" />
                     {selectedUser?.mensagem}
@@ -96,7 +102,7 @@ export default function RespostaEmail({ selectedUser, setSelectedUser }: Respost
 
             <div className="mt-6 text-end">
                 <Button
-                    type="submit" // Usando o submit diretamente no botão
+                    type="submit" 
                     className="bg-blue-600 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 rounded-lg px-6 py-2 text-sm font-semibold transition duration-150 ease-in-out"
                 >
                     <FiSend className="mr-2 w-4 h-4" />

@@ -1,4 +1,4 @@
-import { FaHome, FaUserCircle, FaCog, FaBoxOpen, FaStore, FaEnvelope } from 'react-icons/fa';
+import { FaHome, FaUserCircle, FaCog, FaBoxOpen, FaStore, FaEnvelope, FaTag, FaBoxes } from 'react-icons/fa';
 import { LogoutDashboard } from "../../../(pages)/login/components/LogoutButton";
 import Link from 'next/link';
 
@@ -10,8 +10,6 @@ export default function Sidebar() {
                     <div className="p-4 text-center">
                         <h2 className="text-lg font-semibold underline">Admin Dashboard</h2>
                     </div>
-
-
                     <ul className="space-y-2 p-4">
                         <li>
                             <Link href="/dashboard">
@@ -31,6 +29,20 @@ export default function Sidebar() {
                             <Link href="/dashboard/produtos">
                                 <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
                                     <FaBoxOpen size={24} /> Produtos
+                                </div>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/dashboard/Categoria">
+                                <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
+                                    <FaBoxes size={24} /> Categoria
+                                </div>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/dashboard/Marca">
+                                <div className="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700">
+                                    <FaTag size={24} /> Marca
                                 </div>
                             </Link>
                         </li>
